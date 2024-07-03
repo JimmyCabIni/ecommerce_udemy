@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForgotPasswordMail;
 use App\Mail\VerifiedMail;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'login_ecommerce', 'verified_auth']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'login_ecommerce', 'verified_auth', 'verified_email', 'verified_code', 'new_password']]);
     }
 
 
@@ -62,7 +63,7 @@ class AuthController extends Controller
         $user = User::where("email", $request->email)->first();
         if ($user){
             $user->update(["code_verified" => uniqid()]);
-            Mail::to($request->email)->send(new VerifiedMail($user));
+            Mail::to($request->email)->send(new ForgotPasswordMail($user));
             return response()->json(["message" => 200]);
         }else{
             return response()->json(["message" => 403]);
