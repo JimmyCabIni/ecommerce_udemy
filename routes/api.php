@@ -39,5 +39,6 @@ Route::group([
     "prefix" => "admin",
 
 ], function ($router) {
+    Route::get("categories/config", [CategoryController::class, 'config']);
     Route::resource("categories", CategoryController::class);
 });
