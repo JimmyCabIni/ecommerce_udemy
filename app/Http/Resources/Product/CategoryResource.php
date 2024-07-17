@@ -28,6 +28,7 @@ class CategoryResource extends JsonResource
                 "name" => $this->resource->category_third->name,
             ]: NULL,
             'position' => $this->resource->position,
+            'type_category' => $this->resource->type_category,
             'created_at' => $this->resource->created_at->format('Y-m-d H:i:s'),
         ];
     }

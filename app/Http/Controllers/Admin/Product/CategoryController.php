@@ -46,12 +46,11 @@ class CategoryController extends Controller
         if($is_exists) {
             return response()->json(["message" => 403]);
         }
-        if ($request->hasFile('image')()) {
+        if ($request->hasFile('image')) {
             $path = Storage::putFile("categories", $request->file('image'));
             $request->request->add(["imagen" => $path]);
         }
         $category = Category::create($request->all());
-
         return response()->json(["message" => 200]);
     }
 
