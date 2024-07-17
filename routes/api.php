@@ -41,4 +41,5 @@ Route::group([
 ], function ($router) {
     Route::get("categories/config", [CategoryController::class, 'config']);
     Route::resource("categories", CategoryController::class);
+    Route::post("categories/{id}", [CategoryController::class, "update"]);
 });
