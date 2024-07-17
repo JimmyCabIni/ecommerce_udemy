@@ -19,6 +19,7 @@ class Category extends Model
         'category_third_id',
         'position',
         'type_category',
+        'state'
     ];
 
     public function setCreatedAtAttribute($value)
